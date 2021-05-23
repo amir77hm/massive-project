@@ -1,0 +1,37 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap");
+
+.Navbar {
+  display: flex;
+  align-items: center;
+
+  .logo {
+    background-color: #cccc;
+    margin: 0 1rem 0 0;
+    font-size: 2.2rem;
+    height: 100%;
+    padding: 1rem 3rem;
+    font-family: "Dancing Script", cursive;
+    font-weight: 700;
+  }
+
+  .slider {
+    width: 35rem;
+
+    .rc-slider-track {
+      background-color: transparent;
+    }
+    .rc-slider-handle,
+    .rc-slider-handle:active,
+    .rc-slider-handle:focus,
+    .rc-slider-handle:hover {
+      background-color: green;
+      outline: none;
+      border: none;
+      margin-top: -3px;
+    }
+
+    .rc-slider-rail {
+      height: 0.8rem;
+    }
+  }
+}

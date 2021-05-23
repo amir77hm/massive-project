@@ -1,23 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
+import Palette from "./Palette";
+import seenColors from "./seenColors";
+import ColorHelper from "./ColorHelper";
+import './App.scss'
 
 function App() {
+
+  // console.log(ColorHelper(seenColors[0]))
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Palette palette={ColorHelper(seenColors[1])} />
     </div>
   );
 }
