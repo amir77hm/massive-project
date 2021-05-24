@@ -1,17 +1,35 @@
-import Palette from "./Palette";
-import seenColors from "./seenColors";
-import ColorHelper from "./ColorHelper";
+import React, { Component } from 'react'
+import { Route, Switch } from "react-router-dom";
 import './App.scss'
 
-function App() {
+import Palette from "./Palette";
+import seedColors from "./seedColors";
+import ColorHelper from "./ColorHelper";
+import PaletteList from "./PaletteList";
 
-  // console.log(ColorHelper(seenColors[0]))
+class App extends Component {
 
-  return (
-    <div className="App">
-      <Palette palette={ColorHelper(seenColors[1])} />
-    </div>
-  );
+  findPalette = (id) => {
+    return seedColors.find(palette => {
+      return palette.id === id
+    })
+  }
+
+  render() {
+    return (
+      <Switch>
+        <Route
+          exact
+          path='/'
+          render={() => <PaletteList palettes={seedColors} />}
+        />
+        <Route
+          exact
+          path='/palette/:id'
+          render={(routeProps) => <Palette palette={ColorHelper(this.findPalette(routeProps.match.params.id))} />}
+        />
+      </Switch>
+    );
+  }
 }
-
 export default App;

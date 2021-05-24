@@ -28,7 +28,7 @@ export default class ColorBox extends Component {
                     </div>
                     <div className={`box-overlay ${isCopied}`} style={{ backgroundColor: this.props.color }}></div>
                     <div className={`copy-msg ${isCopied}`}>
-                        <h2>copied</h2>
+                        <h2>Copied</h2>
                         <span>{this.props.color}</span>
                     </div>
                 </div>

@@ -3,19 +3,21 @@
 .Navbar {
   display: flex;
   align-items: center;
+  height: 7vh;
 
-  .logo {
+  &__logo {
     background-color: #cccc;
-    margin: 0 1rem 0 0;
     font-size: 2.2rem;
     height: 100%;
-    padding: 1rem 3rem;
+    padding: 0 3rem;
     font-family: "Dancing Script", cursive;
-    font-weight: 700;
+    display: flex;
+    align-items: center;
   }
 
-  .slider {
+  &__slider {
     width: 35rem;
+    margin: 0 1rem;
 
     .rc-slider-track {
       background-color: transparent;
@@ -33,5 +35,15 @@
     .rc-slider-rail {
       height: 0.8rem;
     }
+  }
+
+  &__select {
+    margin-left: auto;
+    margin-right: 1rem;
+  }
+
+  .message-id {
+    font-size: 1.2rem;
+    text-transform: uppercase;
   }
 }
