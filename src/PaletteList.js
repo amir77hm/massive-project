@@ -25,9 +25,14 @@ const styles = {
 
 class PaletteList extends Component {
 
+    handleClick = (id) => {
+        this.props.routeProps.history.push(`/palette/${id}`)
+    }
+
     render() {
         const { palettes, classes } = this.props;
-        const links = palettes.map(palette => <MiniPallete {...palette} key={palette.paletteName} />)
+        const links = palettes.map(palette => <MiniPallete {...palette} key={palette.id} handleClick={() => this.handleClick(palette.id)} />)
+
         return (
             <div className={classes.root}>
                 <div className={classes.container}>

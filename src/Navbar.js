@@ -26,20 +26,20 @@ export default class Navbar extends Component {
     }
 
     render() {
-        const { level, changeLevel } = this.props
+        const { level, changeLevel, sliderShow } = this.props
         return (
             <div className='Navbar'>
                 <div className='Navbar__logo'>
                     <Link to='/'>color picker</Link>
                 </div>
-                <div className='Navbar__slider'>
+                {sliderShow && <div className='Navbar__slider'>
                     <Slider defaultValue={level}
                         min={100}
                         max={900}
                         step={100}
                         onAfterChange={changeLevel}
                     />
-                </div>
+                </div>}
                 <div className='Navbar__select'>
                     <Select value={this.state.format} onChange={this.handleChange}>
                         <MenuItem value='hex'>Hex - #ffffff</MenuItem>

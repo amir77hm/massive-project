@@ -36,12 +36,12 @@ const styles = {
 }
 class MiniPallete extends Component {
     render() {
-        const { classes, paletteName, emoji, colors } = this.props
+        const { classes, paletteName, emoji, colors, handleClick } = this.props
         const miniColors = colors.map(color => {
             return <div className={classes.miniColors} key={color.name} style={{ backgroundColor: color.color }} />
         })
         return (
-            <div className={classes.root}>
+            <div className={classes.root} onClick={handleClick}>
                 <div className={classes.color}>
                     {miniColors}
                 </div>
