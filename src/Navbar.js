@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
 import Slider from "rc-slider";
 import 'rc-slider/assets/index.css'
-import './Navbar.scss'
 import { Select, MenuItem, Snackbar, IconButton } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import { Link } from "react-router-dom";
+import { withStyles } from "@material-ui/styles";
+import styles from "./styles/NavbarStyles";
 
-
-
-export default class Navbar extends Component {
+class Navbar extends Component {
 
     state = {
         format: 'hex',
@@ -26,13 +25,13 @@ export default class Navbar extends Component {
     }
 
     render() {
-        const { level, changeLevel, sliderShow } = this.props
+        const { level, changeLevel, sliderShow, classes } = this.props
         return (
-            <div className='Navbar'>
-                <div className='Navbar__logo'>
+            <div className={classes.Navbar}>
+                <div className={classes.NavbarLogo}>
                     <Link to='/'>color picker</Link>
                 </div>
-                {sliderShow && <div className='Navbar__slider'>
+                {sliderShow && <div className={classes.NavbarSlider}>
                     <Slider defaultValue={level}
                         min={100}
                         max={900}
@@ -40,8 +39,8 @@ export default class Navbar extends Component {
                         onAfterChange={changeLevel}
                     />
                 </div>}
-                <div className='Navbar__select'>
-                    <Select value={this.state.format} onChange={this.handleChange}>
+                <div className={classes.NavbarSelect}>
+                    <Select value={this.state.format} onChange={this.handleChange} >
                         <MenuItem value='hex'>Hex - #ffffff</MenuItem>
                         <MenuItem value='rgb'>Rgb - (255, 255, 255)</MenuItem>
                         <MenuItem value='rgba'>Rgba - (255, 255, 255, 1.0)</MenuItem>
@@ -55,7 +54,7 @@ export default class Navbar extends Component {
                     open={this.state.open}
                     autoHideDuration={3000}
                     onClose={this.closeSnackbar}
-                    message={<span className='message-id'>Format Changed to {this.state.format}</span>}
+                    message={<span className={classes.messageId}>Format Changed to {this.state.format}</span>}
                     action={
                         <IconButton key='close' aria-label="close" color="inherit" onClick={this.closeSnackbar}>
                             <CloseIcon />
@@ -66,3 +65,5 @@ export default class Navbar extends Component {
         )
     }
 }
+
+export default withStyles(styles)(Navbar)

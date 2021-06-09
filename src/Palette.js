@@ -3,16 +3,8 @@ import ColorBox from "./ColorBox";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { withStyles } from "@material-ui/styles";
+import styles from "./styles/PaletteStyles";
 
-const styles = {
-    colorBoxes: {
-        display: 'grid',
-        gridTemplateColumns: 'repeat(5, 1fr)',
-        gridTemplateRows: 'repeat(4, 1fr)',
-        height: '88vh',
-        overflow: 'hidden',
-    }
-}
 class Palette extends Component {
     state = { level: 500, format: 'hex' }
 
