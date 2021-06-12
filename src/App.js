@@ -11,8 +11,16 @@ import NewPaletteForm from "./NewPaletteForm";
 
 class App extends Component {
 
+  state = {
+    palettes: seedColors
+  }
+
+  savePalette = async (newPalette) => {
+    await this.setState({ palettes: [...this.state.palettes, newPalette] })
+  }
+
   findPalette = (id) => {
-    return seedColors.find(palette => {
+    return this.state.palettes.find(palette => {
       return palette.id === id
     })
   }
@@ -22,26 +30,35 @@ class App extends Component {
       <Switch>
         <Route
           path='/palette/:paletteId/:colorId'
-          render={(routeProps) => <SingleColorPalette
-            palette={ColorHelper(this.findPalette(routeProps.match.params.paletteId))}
-            paletteId={routeProps.match.params.paletteId}
-            colorId={routeProps.match.params.colorId} />}
+          render={(routeProps) =>
+            <SingleColorPalette
+              palette={ColorHelper(this.findPalette(routeProps.match.params.paletteId))}
+              paletteId={routeProps.match.params.paletteId}
+              colorId={routeProps.match.params.colorId} />}
         />
         <Route
           exact
           path='/palette/new'
-          render={routeProps => <NewPaletteForm routeProps={routeProps} />}
+          render={routeProps =>
+            <NewPaletteForm
+              {...routeProps}
+              savePalette={this.savePalette}
+              palettes={this.state.palettes} />}
         />
         <Route
           exact
           path='/'
-          render={routeProps => <PaletteList palettes={seedColors} routeProps={routeProps} />}
+          render={routeProps =>
+            <PaletteList
+              palettes={this.state.palettes}
+              routeProps={routeProps} />}
         />
         <Route
           exact
           path='/palette/:id'
-          render={(routeProps) => <Palette
-            palette={ColorHelper(this.findPalette(routeProps.match.params.id))} />}
+          render={(routeProps) =>
+            <Palette
+              palette={ColorHelper(this.findPalette(routeProps.match.params.id))} />}
         />
       </Switch>
     );

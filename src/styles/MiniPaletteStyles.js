@@ -4,6 +4,10 @@ const styles = {
         backgroundColor: '#dae1e4',
         borderRadius: '5px',
         padding: '0.5rem',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        width: '22rem',
 
         '&:hover': {
             cursor: 'pointer'
@@ -12,6 +16,11 @@ const styles = {
     color: {
         overflow: 'hidden',
         borderRadius: '5px',
+        display: 'grid',
+        gridTemplateColumns: 'repeat(5, 1fr)',
+        gridTemplateRows: 'repeat(4, 1fr)',
+        backgroundColor: '#ccc',
+        boxShadow: 'inset 0 0 2px #000000',
     },
     title: {
         display: 'flex',
@@ -25,10 +34,9 @@ const styles = {
     },
     miniColors: {
         height: '3rem',
-        width: '25%',
-        display: 'inline-block',
-        margin: '0 auto',
-        marginBottom: '-3px',
+        width: '100%',
+        margin: '0',
+        padding: '0'
     }
 }
 

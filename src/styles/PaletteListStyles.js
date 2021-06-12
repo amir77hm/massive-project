@@ -1,12 +1,13 @@
 const styles = {
     root: {
         backgroundColor: 'blue',
-        height: '100vh',
+        minHeight: '100vh',
         display: 'flex',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        paddingBottom: '3rem'
     },
     container: {
-        width: '50%',
+        maxWidth: '750px',
     },
     nav: {
         width: '100%',
@@ -22,8 +23,9 @@ const styles = {
     },
     palettes: {
         display: 'grid',
-        gridTemplateColumns: 'repeat(3, 30%)',
-        gridGap: '5%'
+        gridTemplateColumns: 'repeat(3, 1fr)',
+        gridGap: '4rem',
+        justifyItems: 'center',
     }
 }
 

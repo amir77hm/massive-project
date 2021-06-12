@@ -19,7 +19,7 @@ html {
 
 body {
   font-family: "Roboto", sans-serif;
-  overflow: hidden;
+  // overflow: hidden;
 }
 
 a {
@@ -28,4 +28,9 @@ a {
 
 ul {
   list-style: none;
+}
+
+::-webkit-scrollbar {
+  display: none;
+  justify-content: space-between;
 }
