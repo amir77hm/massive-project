@@ -1,4 +1,5 @@
 import chroma from "chroma-js";
+import size from './sizes'
 
 const styles = {
     colorBox: {
@@ -23,6 +24,10 @@ const styles = {
         bottom: '0',
         right: '0',
         left: '0',
+        [size.down('xs')]: {
+            display: 'flex',
+            alignItems: 'center'
+        },
     },
     boxOverlay: {
         opacity: '0',
@@ -34,11 +39,17 @@ const styles = {
         left: '0',
         right: '0',
         bottom: '0',
+        [size.down('sm')]: {
+            transition: 'transform .4s ease-in-out',
+        },
     },
     show: {
         zIndex: '2',
         opacity: '1',
         transform: 'scale(30)',
+        [size.down('sm')]: {
+            transform: 'scale(60)',
+        },
     },
     copyMsg: {
         position: 'fixed',
@@ -62,39 +73,53 @@ const styles = {
         transform: 'scale(1)',
     },
     copyText: {
-        color: props => chroma(props.color).luminance() >= 0.3 ? 'black' : 'white'
+        color: props => chroma(props.color).luminance() >= 0.3 ? 'black' : 'white',
+        [size.down('md')]: {
+            fontSize: '2.7rem'
+        },
     },
     name: {
         color: props => chroma(props.color).luminance() >= 0.3 ? 'black' : 'white',
-        padding: '0.6rem',
-        fontSize: '1.4rem',
+        padding: '0.4rem',
+        fontSize: '1rem',
     },
     copyTitle: {
         color: props => chroma(props.color).luminance() >= 0.3 ? 'black' : 'white',
         backgroundColor: props => chroma(props.color).luminance() <= 0.5 ? '#ffffff30' : '#00000030',
         width: '100%',
         textAlign: 'center',
-        padding: '1rem 0',
-        margin: '1rem 0',
+        // padding: '0rem 0',
+        // margin: '1rem 0',
+        [size.down('md')]: {
+            fontSize: '4rem'
+        },
     },
     more: {
         color: props => chroma(props.color).luminance() >= 0.3 ? 'black' : 'white',
         backgroundColor: props => chroma(props.color).luminance() <= 0.5 ? '#ffffff25' : '#00000015',
         borderTopLeftRadius: '4px',
-        fontSize: '1.4rem',
-        padding: '0.6rem',
+        fontSize: '.9rem',
+        padding: '0.5rem',
+        [size.down('xs')]: {
+            padding: '0',
+            backgroundColor: 'rgba(0,0,0,0) !important'
+        }
     },
     copyButton: {
         color: props => chroma(props.color).luminance() >= 0.3 ? 'black' : 'white',
         opacity: '0',
-        padding: '1.1rem 4rem',
-        fontSize: '1.9rem',
-        borderRadius: '1rem',
+        padding: '.5rem 2rem',
+        fontSize: '1.1rem',
+        borderRadius: '.6rem',
         backgroundColor: props => chroma(props.color).luminance() <= 0.5 ? '#ffffff30' : '#00000030',
         position: 'absolute',
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
+        [size.down('xs')]: {
+            padding: '2px 1rem',
+            borderRadius: '3px',
+        }
     },
 }
 

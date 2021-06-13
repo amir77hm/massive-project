@@ -9,17 +9,17 @@ const styles = {
         width: '100%',
         height: '100%',
         position: 'relative',
-        padding: '1rem',
+        padding: '.6rem',
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'flex-end',
-        fontSize: '1.4rem',
+        fontSize: '1rem',
 
     },
     DeleteIcon: {
         cursor: 'pointer',
         transition: 'all 0.4s',
-        fontSize: '1.8rem',
+        fontSize: '1.3rem',
         '&:hover': {
             color: '#fff',
             transform: 'scale(1.3)',

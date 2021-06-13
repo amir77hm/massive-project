@@ -12,17 +12,34 @@ import NewPaletteForm from "./NewPaletteForm";
 class App extends Component {
 
   state = {
-    palettes: seedColors
+    palettes: JSON.parse(localStorage.getItem('palettes')) || seedColors
   }
 
-  savePalette = async (newPalette) => {
-    await this.setState({ palettes: [...this.state.palettes, newPalette] })
+  syncLocalStorage = () => {
+    localStorage.setItem('palettes', JSON.stringify(this.state.palettes))
+  }
+
+  savePalette = (newPalette) => {
+    this.setState({ palettes: [...this.state.palettes, newPalette] },
+      this.syncLocalStorage
+    )
+
   }
 
   findPalette = (id) => {
     return this.state.palettes.find(palette => {
       return palette.id === id
     })
+  }
+
+  deletePalette = (id) => {
+    this.setState(prevState => ({
+      palettes: prevState.palettes.filter((palette) => {
+        return palette.id !== id
+      })
+    }),
+      this.syncLocalStorage
+    )
   }
 
   render() {
@@ -51,7 +68,9 @@ class App extends Component {
           render={routeProps =>
             <PaletteList
               palettes={this.state.palettes}
-              routeProps={routeProps} />}
+              routeProps={routeProps}
+              deletePalette={this.deletePalette}
+            />}
         />
         <Route
           exact

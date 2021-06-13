@@ -1,3 +1,4 @@
+import size from "./sizes";
 const styles = {
     SingleColorPalette: {
 
@@ -8,20 +9,32 @@ const styles = {
         gridTemplateRows: 'repeat(2, 1fr)',
         height: '88vh',
         overflow: 'hidden',
-
+        [size.down('md')]: {
+            gridTemplateColumns: 'repeat(4, 1fr)',
+            gridTemplateRows: 'repeat(3, 1fr)',
+        },
+        [size.down('sm')]: {
+            gridTemplateColumns: 'repeat(2, 1fr)',
+            gridTemplateRows: 'repeat(5, 1fr)',
+        },
+        [size.down('xs')]: {
+            gridTemplateColumns: 'repeat(1, 1fr)',
+            gridTemplateRows: 'repeat(10, 1fr)',
+            height: '93vh',
+        },
     },
     goBack: {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        fontSize: '2rem',
+        fontSize: '1.3rem',
         fontWeight: 'bold',
         backgroundColor: '#000',
     },
     backBtn: {
         textDecoration: 'none',
         color: '#fff',
-        padding: '1.2rem 2.5rem',
+        padding: '1rem 2.2rem',
         borderRadius: '0.4rem',
         cursor: 'pointer',
         '&:hover': {

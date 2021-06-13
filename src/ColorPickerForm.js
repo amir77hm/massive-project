@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Button } from "@material-ui/core";
 import { ChromePicker } from 'react-color';
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 
 const maxColor = 20;
@@ -11,8 +11,8 @@ const useStyles = makeStyles((theme) => ({
     colorInput: {
         width: '100%',
         marginTop: '1rem',
-        height: '70px'
-    }
+        height: '70px',
+    },
 }))
 
 export default function ColorPickerForm(props) {
@@ -44,7 +44,6 @@ export default function ColorPickerForm(props) {
                 onChangeComplete={newColor => {
                     setCurrentColor(newColor.hex)
                 }}
-                style={{ width: '100%' }}
             />
             <ValidatorForm onSubmit={handleSubmit}>
                 <TextValidator
@@ -66,8 +65,8 @@ export default function ColorPickerForm(props) {
                     variant='contained'
                     style={{
                         backgroundColor: currentColor,
-                        padding: '1rem 3rem',
-                        fontSize: '1.4rem'
+                        padding: '.8rem 2.2rem',
+                        fontSize: '1.2rem'
                     }}
                     type='submit'
                     disabled={props.colors.length >= maxColor}

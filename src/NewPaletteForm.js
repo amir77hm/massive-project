@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react'
-
+import React, { useEffect, useState } from 'react'
 import PaletteFormNav from "./PaletteFormNav";
 import ColorPickerForm from "./ColorPickerForm";
 import { arrayMove } from "react-sortable-hoc";
 import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
@@ -13,69 +12,18 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { Button } from "@material-ui/core";
 import DraggableColorList from "./DraggableColorList";
+import styles from "./styles/NewPaletteFormStyles";
 
-const drawerWidth = 300;
 const maxColor = 20;
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-        display: 'flex',
-    },
-    drawer: {
-        width: drawerWidth,
-        flexShrink: 0,
-
-    },
-    drawerPaper: {
-        width: drawerWidth,
-    },
-    drawerHeader: {
-        display: 'flex',
-        alignItems: 'center',
-        padding: theme.spacing(0, 1),
-        // necessary for content to be below app bar
-        ...theme.mixins.toolbar,
-        justifyContent: 'flex-end',
-    },
-    content: {
-        flexGrow: 1,
-        padding: theme.spacing(2),
-        transition: theme.transitions.create('margin', {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
-        }),
-        marginLeft: -drawerWidth,
-    },
-    contentShift: {
-        transition: theme.transitions.create('margin', {
-            easing: theme.transitions.easing.easeOut,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
-        marginLeft: 0,
-    },
-    createBox: {
-        display: 'flex',
-        alignItems: 'center',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        height: '80%',
-        textAlign: 'center',
-        '& Button': {
-            margin: '1.5rem 0.5rem'
-        }
-    },
-}));
 
 export default function NewPaletteForm(props) {
 
-    const classes = useStyles();
+    const classes = styles()
     const theme = useTheme();
     const [open, setOpen] = useState(true);
     const [colors, setColors] = useState(props.palettes[3].colors)
 
-
     const addNewColor = (newColor) => {
-        console.log(newColor)
         setColors([...colors, newColor])
     }
 
@@ -88,10 +36,11 @@ export default function NewPaletteForm(props) {
         setColors(newColors)
     }
 
-    const savePalette = (newPaletteName) => {
+    const savePalette = (newPaletteName, newEmoji) => {
         const newPalette = {
             paletteName: newPaletteName,
             id: newPaletteName.toLowerCase().replace(/ /g, '-'),
+            emoji: newEmoji.native,
             colors,
         }
         props.savePalette(newPalette)
@@ -118,9 +67,12 @@ export default function NewPaletteForm(props) {
         setOpen(true);
     };
 
+    useEffect(() => {
+        (window.innerWidth <= 575.98) ? setOpen(false) : setOpen(true)
+    }, [])
 
     return (
-        <div className={classes.root}>
+        <div className={classes.root} >
             <PaletteFormNav
                 savePalette={savePalette}
                 palettes={props.palettes}
@@ -144,7 +96,7 @@ export default function NewPaletteForm(props) {
                 <Divider />
                 <div className={classes.createBox}>
                     <Typography variant='h4'>Design your palette</Typography>
-                    <div>
+                    <div style={{ margin: '1rem 0' }}>
                         <Button color='primary' variant='contained' onClick={deletePalette}>Clear palette</Button>
                         <Button color='secondary' variant='contained' onClick={addRandomColor} disabled={colors.length >= maxColor}>Random color</Button>
                     </div>
