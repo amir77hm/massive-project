@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-import MiniPallete from "./MiniPallete";
-import { withStyles } from "@material-ui/styles";
-import styles from "./styles/PaletteListStyles";
-import { Link } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { Link } from 'react-router-dom';
+import { withStyles } from "@material-ui/styles";
 import { Avatar } from "@material-ui/core";
 import CheckIcon from "@material-ui/icons/Check";
 import CloseIcon from "@material-ui/icons/Close";
@@ -14,6 +12,8 @@ import { ListItem } from "@material-ui/core";
 import { ListItemAvatar } from "@material-ui/core";
 import { ListItemText } from "@material-ui/core";
 import { red, blue } from "@material-ui/core/colors";
+import MiniPallete from "./MiniPallete";
+import styles from "./styles/PaletteListStyles";
 
 class PaletteList extends Component {
 
@@ -49,6 +49,7 @@ class PaletteList extends Component {
 
     render() {
         const { palettes, classes } = this.props;
+
         const links = palettes.map(palette =>
             <CSSTransition
                 key={palette.id}
@@ -58,7 +59,7 @@ class PaletteList extends Component {
                 <MiniPallete
                     {...palette}
                     deletePalette={this.deletingPalette}
-                    handleClick={() => this.handleClick(palette.id)}
+                    handleClick={this.handleClick}
                 />
             </CSSTransition>
         )

@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import CopyToClipboard from "react-copy-to-clipboard";
 import { Link } from "react-router-dom";
+import CopyToClipboard from "react-copy-to-clipboard";
 import { withStyles } from "@material-ui/styles";
+import classNames from 'classnames';
 import styles from './styles/ColorBoxStyles'
 
 
@@ -23,8 +24,7 @@ class ColorBox extends Component {
 
     render() {
         const { color, paletteId, colorId, name, moreBtn, classes } = this.props
-        const isCopied = this.state.copied ? classes.show : ''
-        const isCopiedMsg = this.state.copied ? classes.showMsg : ''
+        const isCopied = this.state.copied
 
         return (
             <CopyToClipboard text={color} onCopy={this.changeCopyState}>
@@ -38,13 +38,15 @@ class ColorBox extends Component {
                         </div>
                         <button className={classes.copyButton}>copy</button>
                     </div>
-                    <div className={`${classes.boxOverlay} ${isCopied}`} style={{ backgroundColor: color }}></div>
-                    <div className={`${classes.copyMsg} ${isCopiedMsg}`}>
+                    <div
+                        className={classNames(classes.boxOverlay, { [classes.show]: isCopied })}
+                        style={{ backgroundColor: color }}></div>
+                    <div className={classNames(classes.copyMsg, { [classes.showMsg]: isCopied })}>
                         <h2 className={classes.copyTitle}>Copied</h2>
                         <span className={classes.copyText}>{color}</span>
                     </div>
                 </div>
-            </CopyToClipboard>
+            </CopyToClipboard >
         )
     }
 }

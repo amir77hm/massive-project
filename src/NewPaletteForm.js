@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import PaletteFormNav from "./PaletteFormNav";
-import ColorPickerForm from "./ColorPickerForm";
 import { arrayMove } from "react-sortable-hoc";
 import clsx from 'clsx';
 import { useTheme } from '@material-ui/core/styles';
@@ -11,7 +9,10 @@ import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { Button } from "@material-ui/core";
+import seedColors from "./seedColors";
 import DraggableColorList from "./DraggableColorList";
+import PaletteFormNav from "./PaletteFormNav";
+import ColorPickerForm from "./ColorPickerForm";
 import styles from "./styles/NewPaletteFormStyles";
 
 const maxColor = 20;
@@ -21,7 +22,7 @@ export default function NewPaletteForm(props) {
     const classes = styles()
     const theme = useTheme();
     const [open, setOpen] = useState(true);
-    const [colors, setColors] = useState(props.palettes[0].colors)
+    const [colors, setColors] = useState(seedColors[3].colors)
 
     const addNewColor = (newColor) => {
         setColors([...colors, newColor])
@@ -57,10 +58,26 @@ export default function NewPaletteForm(props) {
     }
 
     const addRandomColor = () => {
-        const allColor = props.palettes.map(p => p.colors).flat()
-        const randNum = Math.floor(Math.random() * allColor.length)
-        const randomColor = allColor[randNum]
-        setColors([...colors, randomColor])
+        const allColor = seedColors.map(p => p.colors).flat();
+        let randNum, randomColor;
+        let flag = true;
+
+        while (flag) {
+            randNum = Math.floor(Math.random() * allColor.length);
+            randomColor = allColor[randNum];
+            let isDuplicatedColor = true
+
+            for (const color of colors) {
+                if (color.name === randomColor.name) {
+                    isDuplicatedColor = false
+                }
+            }
+            if (isDuplicatedColor) {
+                setColors([...colors, randomColor])
+                flag = false
+            }
+
+        }
     }
 
     const handleDrawerOpen = () => {

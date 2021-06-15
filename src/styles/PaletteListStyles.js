@@ -26,7 +26,6 @@ const styles = {
         paddingBottom: '3rem'
     },
     container: {
-        // width: '750px',
     },
     nav: {
         width: '100%',

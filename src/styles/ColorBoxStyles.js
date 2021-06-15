@@ -88,8 +88,6 @@ const styles = {
         backgroundColor: props => chroma(props.color).luminance() <= 0.5 ? '#ffffff30' : '#00000030',
         width: '100%',
         textAlign: 'center',
-        // padding: '0rem 0',
-        // margin: '1rem 0',
         [size.down('md')]: {
             fontSize: '4rem'
         },

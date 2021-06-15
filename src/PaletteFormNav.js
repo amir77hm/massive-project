@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import PaletteMetaForm from "./PaletteMetaForm";
+import { withRouter } from "react-router-dom";
+import { ValidatorForm } from "react-material-ui-form-validator";
 import clsx from 'clsx';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -7,11 +8,9 @@ import Typography from '@material-ui/core/Typography';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import IconButton from '@material-ui/core/IconButton';
 import { Button } from "@material-ui/core";
-import { Link } from "react-router-dom";
-import { ValidatorForm } from "react-material-ui-form-validator";
-import useStyles from "./styles/PaletteFormNavStyles";
 import QueueIcon from '@material-ui/icons/Queue';
-import { withRouter } from "react-router-dom";
+import PaletteMetaForm from "./PaletteMetaForm";
+import useStyles from "./styles/PaletteFormNavStyles";
 
 function PaletteFormNav(props) {
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { Button } from "@material-ui/core";
 import { ChromePicker } from 'react-color';
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
+import { Button } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
 
 
@@ -11,7 +11,6 @@ const useStyles = makeStyles((theme) => ({
     colorInput: {
         width: '100%',
         marginTop: '1rem',
-        height: '70px',
     },
 }))
 
@@ -45,7 +44,10 @@ export default function ColorPickerForm(props) {
                     setCurrentColor(newColor.hex)
                 }}
             />
-            <ValidatorForm onSubmit={handleSubmit}>
+            <ValidatorForm
+                onSubmit={handleSubmit}
+                instantValidate={false}
+            >
                 <TextValidator
                     value={newColorName}
                     onChange={(e) => setNewColorName(`${e.target.value}`)}
