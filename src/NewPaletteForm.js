@@ -21,7 +21,7 @@ export default function NewPaletteForm(props) {
     const classes = styles()
     const theme = useTheme();
     const [open, setOpen] = useState(true);
-    const [colors, setColors] = useState(props.palettes[3].colors)
+    const [colors, setColors] = useState(props.palettes[0].colors)
 
     const addNewColor = (newColor) => {
         setColors([...colors, newColor])
@@ -78,6 +78,8 @@ export default function NewPaletteForm(props) {
                 palettes={props.palettes}
                 open={open}
                 handleDrawerOpen={handleDrawerOpen}
+                history={props.history}
+                handleGoBackBtn={() => setOpen(false)}
             />
             <Drawer
                 className={classes.drawer}

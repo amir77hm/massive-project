@@ -1,6 +1,22 @@
 import size from "./sizes";
 import background from './bg.svg'
 const styles = {
+    '@global': {
+        '.fade-exit': {
+            opacity: 1
+        },
+        '.fade-exit-active': {
+            opacity: 0,
+            transition: 'opacity 500ms ease-in'
+        },
+        '.fade-enter': {
+            opacity: 0,
+        },
+        '.fade-enter-active': {
+            opacity: 1,
+            transition: 'opacity 500ms ease-in',
+        }
+    },
     root: {
         backgroundColor: '#fff',
         background: `no-repeat url(${background}) center center/cover`,
@@ -10,7 +26,7 @@ const styles = {
         paddingBottom: '3rem'
     },
     container: {
-        // maxWidth: '750px',
+        // width: '750px',
     },
     nav: {
         width: '100%',

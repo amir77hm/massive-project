@@ -23,7 +23,6 @@ const palette = [
             { name: 'DarkGreen', color: '#005f00' },
             { name: 'DeepSkyBlue4', color: '#005f5f' },
             { name: 'DodgerBlue2', color: '#005fff' },
-            { name: 'DarkRed', color: '#5f0000' },
         ]
     },
     {

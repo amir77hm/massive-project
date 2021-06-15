@@ -11,8 +11,9 @@ import { Link } from "react-router-dom";
 import { ValidatorForm } from "react-material-ui-form-validator";
 import useStyles from "./styles/PaletteFormNavStyles";
 import QueueIcon from '@material-ui/icons/Queue';
+import { withRouter } from "react-router-dom";
 
-export default function PaletteFormNav(props) {
+function PaletteFormNav(props) {
 
     const classes = useStyles();
     const [showForm, setShowForm] = useState(false)
@@ -24,6 +25,11 @@ export default function PaletteFormNav(props) {
     const savePalette = (newPalette, newEmoji) => {
         props.savePalette(newPalette, newEmoji)
         setShowForm(false)
+    }
+
+    const goBack = () => {
+        props.handleGoBackBtn()
+        props.history.push('/')
     }
 
     useEffect(() => {
@@ -54,7 +60,7 @@ export default function PaletteFormNav(props) {
                     <Typography variant="h6" noWrap>Create a palette</Typography>
                 </Toolbar>
                 <div className={classes.navBtns}>
-                    <Link to='/'><Button variant='contained' >Go back</Button></Link>
+                    <Button onClick={goBack} variant='contained' >Go back</Button>
                     <Button
                         variant="contained"
                         color="secondary"
@@ -69,3 +75,5 @@ export default function PaletteFormNav(props) {
         </div>
     )
 }
+
+export default withRouter(PaletteFormNav)
